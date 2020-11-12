@@ -1,0 +1,57 @@
+----------------
+Generar mapa
+
+mapa = Celda[][]; // el mapa es una matriz de celdas
+
+for (int i = 0; i < cant_filas; i++) {
+		for (int j = 0; j < cant_columnas; j++) {
+				mapa[i][j] = new Celda(this, i, j);
+		}
+}
+
+----------------
+
+Celda
+Contiene una Entidad y conoce su posición (X,Y) en el mapa.
+
+----------------
+Movimiento del jugador
+
+Asumo que el jugador tiene las coordenadas X e Y del tablero.
+El jugador se mueve de forma horizontal sobre la fila inferior. Comienza en la parte central de la fila. 
+El tablero es el encargado de mover al jugado hacia la izquierda o derecha, según el bóton que se presione.
+
+moverse(){
+
+	miTablero.moverJugador(x,y);
+}	
+
+//Metodo mover dentro de clase tablero
+celda[x,y].jugador.setY(celda[x,y].jugador.gety()+(si es izq, -1 si der +1));
+	
+celda[x,y + (si es izq, -1 si der +1)].enemigo = celda[x,y].enemigo
+
+----------------
+Movimiento de los infectados
+
+Asumo que el enemigo tiene las coordenadas X e Y del tablero.
+El tablero es el encargado de mover automaticamente a los infectados.
+El enemigo se mueve de forma vertical sobre la columna donde inicia en el juego, comenzando desde la arriba de la pantalla hasta llegar al final del lado de abajo.
+
+moverse(){
+
+	si (miTablero.puedeMoverse(this.x+1,this.y))
+			miTablero.mover(infectado)
+}	
+
+//Metodo mover dentro de clase tablero
+celda[x,y].enemigo.setX(celda[x,y].enemigo.getx()+1);
+celda[x+1,y].enemigo = celda[x,y].enemigo;
+//si estoy en la ultima fila, tengo que actualizarlo para que vuelva a la primera.
+
+----------------
+Interacción entre jugador, infectados y mapa
+
+Jugador, enemigo, proyectil y premio son entidades por lo tanto van a poder interactuar con el mapa(ya que este es una matriz de celdas, en la que cada celda tiene su entidad).
+La idea es utilizar el patrón Visitor para poder modelar las interaciones entre las entidades, ya que la entidad va a tener el Aceptar Visitor para saber de que forma debe actuar al ocurrir una interacción.
+
