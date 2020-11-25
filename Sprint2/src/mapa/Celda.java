@@ -9,7 +9,6 @@ public class Celda {
 	protected Mapa miMapa;
 	protected Entidad miEntidad;
 	
-
 	public Celda(Mapa mapa, int x, int y) {
 		this.miMapa = mapa;
 		this.x = x;

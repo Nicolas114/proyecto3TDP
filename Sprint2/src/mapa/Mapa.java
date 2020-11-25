@@ -5,6 +5,8 @@ import entidad.Entidad;
 import logica.Juego;
 
 public class Mapa {
+	
+	public final static int PIXEL = 64;
 
 	protected Celda[][] celdas;
 	protected int filas, columnas;
