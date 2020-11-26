@@ -2,7 +2,7 @@ package GUI;
 
 import javax.swing.JLabel;
 
-public class EntidadGrafica {
+public class EntidadGrafica extends JLabel {
 	
 	protected JLabel milabel;
 	protected String path;
